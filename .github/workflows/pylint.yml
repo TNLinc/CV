@@ -41,14 +41,14 @@ jobs:
         run: |
           source .venv/bin/activate
           mkdir -p pylint_reports
-          pylint * > ./pylint_reports/vendor_pylint_checks.json || exit_code=`echo $?` || true
-          pylint-json2html -o ./pylint_reports/vendor_pylint_checks.html ./pylint_reports/vendor_pylint_checks.json
+          pylint * > pylint_reports/cv_pylint_checks.json || exit_code=`echo $?` || true
+          pylint-json2html -o pylint_reports/cv_pylint_checks.html ./pylint_reports/cv_pylint_checks.json
           deactivate
           exit ${exit_code}
       #----------------------------------------------
       # create artifacts
       #----------------------------------------------
-      - name: Upload vendor artifacts
+      - name: Upload artifacts
         if: failure()
         uses: actions/upload-artifact@v2
         with:
