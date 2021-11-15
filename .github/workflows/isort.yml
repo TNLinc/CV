@@ -1,5 +1,4 @@
 name: Isort
-
 on:
   pull_request:
     branches:

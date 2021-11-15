@@ -1,5 +1,4 @@
 name: Pylint
-
 on:
   pull_request:
     branches:

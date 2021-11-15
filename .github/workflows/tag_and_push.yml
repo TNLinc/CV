@@ -1,4 +1,5 @@
 name: Create tag | Upload all images
+
 on:
   push:
     branches:
