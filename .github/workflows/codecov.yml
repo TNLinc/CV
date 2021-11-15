@@ -36,7 +36,9 @@ jobs:
           poetry install --no-interaction --no-root
       - name: Run tests and collect coverage
         run: |
+          source .venv/bin/activate
           coverage run -m pytest.py
           coverage xml
+          deactivate
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
