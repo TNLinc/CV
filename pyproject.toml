@@ -18,9 +18,9 @@ environs = "^9.3.4"
 Pillow = "^8.4.0"
 mediapipe = "^0.8.8"
 six = "^1.16.0"
-opencv-python = "^4.5.4"
 Flask-Cors = "^3.0.10"
 typing-extensions = "^3.10.0"
+opencv-python-headless = "^4.5.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "2.9.3"
@@ -41,7 +41,7 @@ build-backend = "poetry.core.masonry.api"
 based_on_style = "pep8"
 
 [tool.pylint.'MASTER']
-ignore = ".venv, Dockerfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
+ignore = ".venv, Dockerfile, Procfile, poetry.lock, pyproject.toml, __init__.py, test_cv.py"
 
 [tool.pylint.'REPORTS']
 output-format = "json"
