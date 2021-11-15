@@ -1,5 +1,4 @@
 name: Build All images
-
 on:
   pull_request:
     branches:
@@ -25,7 +24,7 @@ jobs:
         continue-on-error: true
         uses: docker/build-push-action@v2
         with:
-          context: ./backend/services/cv
+          context: .
           push: false
           tags: tnlinc/cv:latest
 
