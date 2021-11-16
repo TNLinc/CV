@@ -31,6 +31,7 @@ pyproject-flake8 = "^0.0.1-alpha.2"
 flake8-html = "^0.4.1"
 pytest = "^6.2.5"
 coverage = "^6.1.2"
+pytest-github-actions-annotate-failures = "^0.1.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
