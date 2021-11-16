@@ -12,21 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install bandit
+        run: |
+          pip install bandit
 
       - name: Security check - Bandit
         id: bandit
-        uses: ioggstream/bandit-report-artifacts@v0.0.2
-        continue-on-error: true
-        with:
-          project_path: .
-          config_file: pyproject.toml
+        run: |
+          mkdir -p bandit-report
+          bandit -c pyproject.toml -r . -f html -o bandit-report/report.html
 
-      - name: Security check report artifacts
-        uses: actions/upload-artifact@v1
+      - name: Upload artifacts
+        if: failure()
+        uses: actions/upload-artifact@v2
         with:
-          name: Security report
-          path: output/security_report.txt
-
-      - name: Fail job if bandit found issues
-        if: steps.bandit.outcome != 'success'
-        run: exit 1
+          name: cv_bandit_report
+          path: bandit-report
