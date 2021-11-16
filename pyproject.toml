@@ -77,3 +77,6 @@ minversion = "6.0"
 testpaths = [
     "tests",
 ]
+
+[tool.bandit]
+exclude_dirs = ["tests"]
