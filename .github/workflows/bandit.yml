@@ -18,7 +18,7 @@ jobs:
         uses: ioggstream/bandit-report-artifacts@v0.0.2
         with:
           project_path: .
-          ignore_failure: true
+          ignore_failure: false
           config_file: pyproject.toml
 
       - name: Security check report artifacts
@@ -26,7 +26,3 @@ jobs:
         with:
           name: Security report
           path: output/security_report.txt
-
-      - name: Fail job if bandit found issues
-        if: steps.bandit.outcome != 'success'
-        run: exit 1
