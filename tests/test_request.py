@@ -32,5 +32,6 @@ def test_mediapipe_skin_tone_v2(client, face_test_image_bytes):
     json_response = json.loads(r.data)
     assert json_response == {"color": "#be8163"}
 
+
 def test_crush():
     assert 1 == 5
