@@ -13,7 +13,7 @@ jobs:
     env:
       CV_SECRET_KEY: some-secret-string
       CV_DEBUG: TRUE
-      CV_ALLOWED_HOSTS: *
+      CV_ALLOWED_HOSTS: '*'
     steps:
       #----------------------------------------------
       #       check-out repo and set-up python
