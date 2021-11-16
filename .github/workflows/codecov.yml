@@ -37,7 +37,7 @@ jobs:
       - name: Run tests and collect coverage
         run: |
           source .venv/bin/activate
-          coverage run -m pytest.py
+          coverage run -m pytest
           coverage xml
           deactivate
       - name: Upload coverage to Codecov
