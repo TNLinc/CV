@@ -19,7 +19,7 @@ jobs:
 
       - name: Install bandit
         run: |
-          pip install bandit
+          pip install bandit toml
 
       - name: Security check - Bandit
         id: bandit
