@@ -1,4 +1,4 @@
-name: Flake8
+name: Codecov
 on:
   pull_request:
     branches:
@@ -10,6 +10,10 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      CV_SECRET_KEY: some-secret-string
+      CV_DEBUG: TRUE
+      CV_ALLOWED_HOSTS: *
     steps:
       #----------------------------------------------
       #       check-out repo and set-up python
@@ -34,22 +38,11 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install --no-interaction --no-root
-      #----------------------------------------------
-      # analise code
-      #----------------------------------------------
-      - name: Analysing the vendor service code with flake8
+      - name: Run tests and collect coverage
         run: |
           source .venv/bin/activate
-          mkdir -p flake-report
-          pflake8 .
+          coverage run -m pytest
+          coverage xml
           deactivate
-          exit ${exit_code}
-      #----------------------------------------------
-      # create artifacts
-      #----------------------------------------------
-      - name: Upload artifacts
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: cv_flake8_report
-          path: flake-report
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
