@@ -79,4 +79,4 @@ testpaths = [
 ]
 
 [tool.bandit]
-#exclude_dirs = ["tests"]
+exclude_dirs = ["tests"]
