@@ -1,5 +1,6 @@
 # CV service
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3f272df9d9be4a948ce9f0a00a4dc343)](https://www.codacy.com/gh/TNLinc/CV/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TNLinc/CV&amp;utm_campaign=Badge_Grade)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3f272df9d9be4a948ce9f0a00a4dc343)](https://www.codacy.com/gh/TNLinc/CV/dashboard?utm_source=github.com&utm_medium=referral&utm_content=TNLinc/CV&utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/TNLinc/CV/branch/main/graph/badge.svg?token=FORLTJT0TH)](https://codecov.io/gh/TNLinc/CV)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 
