@@ -14,13 +14,19 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Security check - Bandit
+        id: bandit
         uses: ioggstream/bandit-report-artifacts@v0.0.2
         with:
           project_path: .
-          ignore_failure: false
+          ignore_failure: true
+          config_file: pyproject.toml
 
       - name: Security check report artifacts
         uses: actions/upload-artifact@v1
         with:
           name: Security report
           path: output/security_report.txt
+
+      - name: Fail job if bandit found issues
+        if: steps.bandit.outcome != 'success'
+        run: exit 1
