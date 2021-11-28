@@ -7,18 +7,14 @@ from cv2 import cv2
 
 class BaseWhiteBalance(ABC):
     @abstractmethod
-    def perfect_reflective_white_balance(self, image: np.ndarray) -> Optional[np.ndarray]:
+    def white_balance(self, image: np.ndarray) -> Optional[np.ndarray]:
         ...
-		
-	@abstractmethod
-    def gamma_trans(self, image: np.ndarray) -> Optional[np.ndarray]:
-        ...
-		
-class WhiteBalance(BaseWhiteBalance):
+
+class PerfectReflectiveWhiteBalance(BaseWhiteBalance):
     def __init__(self):
          ...
 
-    def perfect_reflective_white_balance(self, image: np.ndarray) -> Optional[np.ndarray]:
+    def white_balance(self, image: np.ndarray) -> Optional[np.ndarray]:
         """
             Идеальный баланс белого с отражением
             ШАГ 1. Рассчитайте сумму R \ G \ B для каждого пикселя
@@ -104,7 +100,11 @@ class WhiteBalance(BaseWhiteBalance):
         
         return img
 			 	 
-    def gamma_trans(self, image: np.ndarray) -> Optional[np.ndarray]:
+class GammaTrans(BaseWhiteBalance):
+    def __init__(self):
+         ...
+
+    def white_balance(self, image: np.ndarray) -> Optional[np.ndarray]:
         """
 			 гамма-коррекция
 			 Использовать адаптивную гамма-коррекцию
@@ -117,3 +117,16 @@ class WhiteBalance(BaseWhiteBalance):
         gamma_table = [np.power (x / 255.0, gamma) * 255.0 for x in range(256)] # Создать таблицу сопоставления
         gamma_table = np.round (np.array (gamma_table)). astype (np.uint8) # Значение цвета является целым числом
         return cv2.LUT (image, gamma_table) # Найдите таблицу цветов изображения. Кроме того, может быть разработан адаптивный алгоритм по принципу гомогенизации интенсивности (цвета) света.
+
+white_balance_fabric = {
+    "perfect": PerfectReflectiveWhiteBalance(),
+	"gamma": GammaTrans().
+}
+
+class WhiteBalanceCell(CellFromFabric):
+    def __init__(self, white_balance: str):
+        super().__init__(fabric=white_balance_fabric, item_name=white_balance)
+
+    def __call__(self, context: CVContext):
+        context.image = self._item.white_balance(context.image)
+        return super().__call__(context=context)
