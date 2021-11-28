@@ -27,6 +27,9 @@ def face_test_image_path(test_data_dir):
 def no_face_test_image_path(test_data_dir):
     return test_data_dir / "no_face_test_image.jpg"
 
+@pytest.fixture
+def white_balance_test_image_path(test_data_dir):
+    return test_data_dir / "face_test_image.jpg"
 
 @pytest.fixture
 def face_test_image(face_test_image_path):
@@ -43,10 +46,14 @@ def face_test_image_bytes(face_test_image_path):
 
 
 @pytest.fixture
+def white_balance_test_image(white_balance_test_image_path):
+    return cv2.imread(str(white_balance_test_image_path))
+
+
+@pytest.fixture
 def no_face_test_image(no_face_test_image_path):
     return cv2.imread(str(no_face_test_image_path))
-
-
+	
 @pytest.fixture
 def face_pixels_haar(test_data_dir):
     face_pixels_path = test_data_dir / "face_pixels.npy"
