@@ -29,30 +29,34 @@ from services.white_balance import white_balance_fabric
 @use_kwargs(InputImageSchema, location="files")
 @use_kwargs(
     {
-        "wb": fields.String(
-            default=None, validate=validate.OneOf(white_balance_fabric.keys())
-        )
+        "wb":
+        fields.String(default=None,
+                      validate=validate.OneOf(white_balance_fabric.keys()))
     },
     location="query",
 )
 @use_kwargs(
     {
-        "face_ext": fields.String(
-            default="mediapipe", validate=validate.OneOf(face_extractor_fabric.keys())
-        )
+        "face_ext":
+        fields.String(default="mediapipe",
+                      validate=validate.OneOf(face_extractor_fabric.keys()))
     },
     location="query",
 )
 @use_kwargs(
     {
-        "tone_ext": fields.String(
-            default="kmean", validate=validate.OneOf(tone_extractor_fabric.keys())
-        )
+        "tone_ext":
+        fields.String(default="kmean",
+                      validate=validate.OneOf(tone_extractor_fabric.keys()))
     },
     location="query",
 )
-@marshal_with(schema=ColorSchema, code=200, description="Return color in hex code")
-@marshal_with(schema=ErrorSchema, code=422, description="Problem with image file")
+@marshal_with(schema=ColorSchema,
+              code=200,
+              description="Return color in hex code")
+@marshal_with(schema=ErrorSchema,
+              code=422,
+              description="Problem with image file")
 @marshal_with(schema=ErrorSchema, code=400, description="No face on the image")
 def skin_tone_v3(
     image: FileStorage,
@@ -66,7 +70,8 @@ def skin_tone_v3(
 
     if not color:
         error = {"files": {"image": ["No face on the image"]}}
-        return ErrorSchema().dump({"error": error}), http.HTTPStatus.BAD_REQUEST
+        return ErrorSchema().dump({"error":
+                                   error}), http.HTTPStatus.BAD_REQUEST
 
     response = dict(color=color)
     return ColorSchema().dump(response)
