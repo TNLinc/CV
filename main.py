@@ -3,24 +3,20 @@ from logging.config import dictConfig
 
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
-from flask import Flask
-from flask import request
-from flask_apispec import doc
-from flask_apispec import FlaskApiSpec
+from flask import Flask, request
+from flask_apispec import FlaskApiSpec, doc
 from flask_cors import CORS
 from healthcheck import HealthCheck
 
 from api.v1.cv import bp as cv_bp_v1
 from api.v1.cv.tonal import opencv_skin_tone_v1
 from api.v2.cv import bp as cv_bp_v2
-from api.v2.cv.tonal import mediapipe_skin_tone_v2
-from api.v2.cv.tonal import opencv_skin_tone_v2
+from api.v2.cv.tonal import mediapipe_skin_tone_v2, opencv_skin_tone_v2
 from api.v3.cv import bp as cv_bp_v3
 from api.v3.cv.tonal import skin_tone_v3
 from core import settings
 from core.loger import LOGGING
-from core.settings import CV_ALLOWED_HOSTS
-from core.settings import DEBUG
+from core.settings import CV_ALLOWED_HOSTS, DEBUG
 from schemas.error_schema import ErrorSchema
 
 description = """
