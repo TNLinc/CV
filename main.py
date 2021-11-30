@@ -42,12 +42,10 @@ spec = APISpec(
         "description": description,
     },
 )
-spec.tag(
-    {
-        "name": "tonal",
-        "description": "CV operations for tonal cream recommendation",
-    }
-)
+spec.tag({
+    "name": "tonal",
+    "description": "CV operations for tonal cream recommendation",
+})
 
 dictConfig(LOGGING)
 
@@ -60,19 +58,16 @@ health = HealthCheck()
 
 @app.route("/ht")
 @doc(
-    description="Check service health",
-)
+    description="Check service health", )
 def health_check():
     return json.loads(health.run()[0])
 
 
-app.config.update(
-    {
-        "APISPEC_SPEC": spec,
-        "APISPEC_SWAGGER_URL": settings.APISPEC_SWAGGER_URL,
-        "APISPEC_SWAGGER_UI_URL": settings.APISPEC_SWAGGER_UI_URL,
-    }
-)
+app.config.update({
+    "APISPEC_SPEC": spec,
+    "APISPEC_SWAGGER_URL": settings.APISPEC_SWAGGER_URL,
+    "APISPEC_SWAGGER_UI_URL": settings.APISPEC_SWAGGER_UI_URL,
+})
 docs = FlaskApiSpec(app, document_options=False)
 
 app.register_blueprint(cv_bp_v1)
@@ -97,7 +92,10 @@ def check_for_maintenance():
         if CV_ALLOWED_HOSTS == ["*"]:
             return
         if request.host.split(":")[0] not in CV_ALLOWED_HOSTS:
-            return ErrorSchema().dump({"error": {"host": "host is not allowed!"}}), 403
+            return ErrorSchema().dump(
+                {"error": {
+                    "host": "host is not allowed!"
+                }}), 403
 
 
 if __name__ == "__main__":
