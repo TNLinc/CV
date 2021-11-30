@@ -40,6 +40,6 @@ jobs:
       - name: Analysing the vendor service code with isort
         run: |
           source .venv/bin/activate
-          isort .
+          isort --check .
           deactivate
           exit ${exit_code}
