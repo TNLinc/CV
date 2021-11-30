@@ -3,20 +3,24 @@ from logging.config import dictConfig
 
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
-from flask import Flask, request
-from flask_apispec import FlaskApiSpec, doc
+from flask import Flask
+from flask import request
+from flask_apispec import doc
+from flask_apispec import FlaskApiSpec
 from flask_cors import CORS
 from healthcheck import HealthCheck
 
 from api.v1.cv import bp as cv_bp_v1
 from api.v1.cv.tonal import opencv_skin_tone_v1
 from api.v2.cv import bp as cv_bp_v2
-from api.v2.cv.tonal import mediapipe_skin_tone_v2, opencv_skin_tone_v2
+from api.v2.cv.tonal import mediapipe_skin_tone_v2
+from api.v2.cv.tonal import opencv_skin_tone_v2
 from api.v3.cv import bp as cv_bp_v3
 from api.v3.cv.tonal import skin_tone_v3
 from core import settings
 from core.loger import LOGGING
-from core.settings import CV_ALLOWED_HOSTS, DEBUG
+from core.settings import CV_ALLOWED_HOSTS
+from core.settings import DEBUG
 from schemas.error_schema import ErrorSchema
 
 description = """
@@ -38,12 +42,10 @@ spec = APISpec(
         "description": description,
     },
 )
-spec.tag(
-    {
-        "name": "tonal",
-        "description": "CV operations for tonal cream recommendation",
-    }
-)
+spec.tag({
+    "name": "tonal",
+    "description": "CV operations for tonal cream recommendation",
+})
 
 dictConfig(LOGGING)
 
@@ -56,19 +58,16 @@ health = HealthCheck()
 
 @app.route("/ht")
 @doc(
-    description="Check service health",
-)
+    description="Check service health", )
 def health_check():
     return json.loads(health.run()[0])
 
 
-app.config.update(
-    {
-        "APISPEC_SPEC": spec,
-        "APISPEC_SWAGGER_URL": settings.APISPEC_SWAGGER_URL,
-        "APISPEC_SWAGGER_UI_URL": settings.APISPEC_SWAGGER_UI_URL,
-    }
-)
+app.config.update({
+    "APISPEC_SPEC": spec,
+    "APISPEC_SWAGGER_URL": settings.APISPEC_SWAGGER_URL,
+    "APISPEC_SWAGGER_UI_URL": settings.APISPEC_SWAGGER_UI_URL,
+})
 docs = FlaskApiSpec(app, document_options=False)
 
 app.register_blueprint(cv_bp_v1)
@@ -93,7 +92,10 @@ def check_for_maintenance():
         if CV_ALLOWED_HOSTS == ["*"]:
             return
         if request.host.split(":")[0] not in CV_ALLOWED_HOSTS:
-            return ErrorSchema().dump({"error": {"host": "host is not allowed!"}}), 403
+            return ErrorSchema().dump(
+                {"error": {
+                    "host": "host is not allowed!"
+                }}), 403
 
 
 if __name__ == "__main__":
