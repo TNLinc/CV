@@ -3,8 +3,11 @@ from typing import Optional
 
 import numpy as np
 from cv2 import cv2
-from flask_apispec import doc, marshal_with, use_kwargs
-from marshmallow import fields, validate
+from flask_apispec import doc
+from flask_apispec import marshal_with
+from flask_apispec import use_kwargs
+from marshmallow import fields
+from marshmallow import validate
 from werkzeug.datastructures import FileStorage
 
 from api.v3.cv import bp

@@ -1,11 +1,9 @@
 import numpy as np
 
-from services.white_balance import (
-    GammaTransWB,
-    GrayWorldWB,
-    LearningBasedWB,
-    PerfectReflectiveWB,
-)
+from services.white_balance import GammaTransWB
+from services.white_balance import GrayWorldWB
+from services.white_balance import LearningBasedWB
+from services.white_balance import PerfectReflectiveWB
 
 
 def test_perfect_reflection_wb_works(
