@@ -12,6 +12,8 @@ from api.v1.cv import bp as cv_bp_v1
 from api.v1.cv.tonal import opencv_skin_tone_v1
 from api.v2.cv import bp as cv_bp_v2
 from api.v2.cv.tonal import mediapipe_skin_tone_v2, opencv_skin_tone_v2
+from api.v3.cv import bp as cv_bp_v3
+from api.v3.cv.tonal import skin_tone_v3
 from core import settings
 from core.loger import LOGGING
 from core.settings import CV_ALLOWED_HOSTS, DEBUG
@@ -71,9 +73,11 @@ docs = FlaskApiSpec(app, document_options=False)
 
 app.register_blueprint(cv_bp_v1)
 app.register_blueprint(cv_bp_v2)
+app.register_blueprint(cv_bp_v3)
 docs.register(opencv_skin_tone_v1, blueprint=cv_bp_v1.name)
 docs.register(opencv_skin_tone_v2, blueprint=cv_bp_v2.name)
 docs.register(mediapipe_skin_tone_v2, blueprint=cv_bp_v2.name)
+docs.register(skin_tone_v3, blueprint=cv_bp_v3.name)
 docs.register(health_check)
 
 
