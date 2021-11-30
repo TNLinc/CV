@@ -52,12 +52,10 @@ class GammaTransWB(BaseWB):
         mean = np.mean(img_gray)
         # Формула вычисляет гамму
         gamma = math.log10(0.5) / math.log10(mean / 255)
-        gamma_table = [
-            np.power(x / 255.0, gamma) * 255.0 for x in range(256)
-        ]  # Создать таблицу сопоставления
+        gamma_table = [np.power(x / 255.0, gamma) * 255.0
+                       for x in range(256)]  # Создать таблицу сопоставления
         gamma_table = np.round(np.array(gamma_table)).astype(
-            np.uint8
-        )  # Значение цвета является целым числом
+            np.uint8)  # Значение цвета является целым числом
         return cv2.LUT(image, gamma_table)
 
 
