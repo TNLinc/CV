@@ -1,10 +1,16 @@
 import math
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from typing import Optional
 
 import numpy as np
-from cv2 import cv2, xphoto_GrayworldWB, xphoto_LearningBasedWB, xphoto_SimpleWB
-from cv2.xphoto import createGrayworldWB, createLearningBasedWB, createSimpleWB
+from cv2 import cv2
+from cv2 import xphoto_GrayworldWB
+from cv2 import xphoto_LearningBasedWB
+from cv2 import xphoto_SimpleWB
+from cv2.xphoto import createGrayworldWB
+from cv2.xphoto import createLearningBasedWB
+from cv2.xphoto import createSimpleWB
 
 from services.chain.cell import CellFromFabric
 from services.cv_context import CVContext
