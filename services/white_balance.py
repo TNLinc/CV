@@ -44,7 +44,8 @@ class GammaTransWB(BaseWB):
         """
         img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         mean = np.mean(img_gray)
-        gamma = math.log10(0.5) / math.log10(mean / 255)  # Формула вычисляет гамму
+        # Формула вычисляет гамму
+        gamma = math.log10(0.5) / math.log10(mean / 255)
         gamma_table = [
             np.power(x / 255.0, gamma) * 255.0 for x in range(256)
         ]  # Создать таблицу сопоставления
