@@ -20,7 +20,7 @@ mediapipe = "^0.8.8"
 six = "^1.16.0"
 Flask-Cors = "^3.0.10"
 typing-extensions = "^3.10.0"
-opencv-python-headless = "^4.5.4"
+opencv-contrib-python-headless = "^4.5.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "2.9.3"
@@ -59,7 +59,8 @@ disable = [
     "no-name-in-module",
     "c-extension-no-member",
     "duplicate-code",
-    "inconsistent-return-statements"
+    "inconsistent-return-statements",
+    "import-error"
 ]
 
 [tool.isort]
@@ -70,7 +71,7 @@ ignore = ["E203", "W503"]
 max-line-length = 120
 format = "html"
 htmldir = "flake-report"
-exclude = [".venv", "api/v1/cv/__init__.py", "api/v2/cv/__init__.py"]
+exclude = [".venv", "api/v1/cv/__init__.py", "api/v2/cv/__init__.py", "api/v3/cv/__init__.py"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 
+class CellError(Exception):
+    ...
+
+
 class Cell(ABC):
     @abstractmethod
     def set_next(self, next_cell: "Cell") -> "Cell":
@@ -27,4 +31,7 @@ class AbstractCell(Cell):
 
 class CellFromFabric(AbstractCell):
     def __init__(self, fabric: dict, item_name: str):
-        self._item = fabric[item_name]
+        try:
+            self._item = fabric[item_name]
+        except KeyError as e:
+            raise CellError(str(e)) from KeyError

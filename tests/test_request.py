@@ -31,3 +31,27 @@ def test_mediapipe_skin_tone_v2(client, face_test_image_bytes):
     )
     json_response = json.loads(r.data)
     assert json_response == {"color": "#be8163"}
+
+
+def test_mediapipe_skin_tone_v2_with_wb(client, face_test_image_bytes):
+    data = {"image": face_test_image_bytes}
+    r = client.post(
+        "/api/cv/v3/skin_tone?wb=perfect",
+        data=data,
+        content_type="multipart/form-data",
+    )
+    json_response = json.loads(r.data)
+    assert json_response == {"color": "#bb7860"}
+
+
+def test_mediapipe_skin_tone_v2_with_wrong_wb(client, face_test_image_bytes):
+    data = {"image": face_test_image_bytes}
+    r = client.post(
+        "/api/cv/v3/skin_tone?wb=wrong_wb_alg_name",
+        data=data,
+        content_type="multipart/form-data",
+    )
+    json_response = json.loads(r.data)
+    assert json_response == {
+        "error": {"query": {"wb": ["Must be one of: perfect, learning, gray, gamma."]}}
+    }
