@@ -1,4 +1,5 @@
 import http
+import logging
 from typing import Optional
 
 import numpy as np
@@ -15,6 +16,8 @@ from services.cv_tone_processor import CVToneProcessor
 from services.face_extractor import face_extractor_fabric
 from services.tone_extractor import tone_extractor_fabric
 from services.white_balance import white_balance_fabric
+
+log = logging.getLogger("cv.request")
 
 
 @bp.route("/skin_tone", methods=["POST"])
@@ -57,13 +60,17 @@ def skin_tone_v3(
     tone_ext: str = "kmean",
     wb: Optional[str] = None,
 ):
+    log.debug("Start processing mediapipe_skin_tone_v2 request")
     np_img = np.fromstring(image.read(), np.uint8)
     image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
+    log.debug("Image was read from request body")
     color = CVToneProcessor.build_tone_process(image, face_ext, tone_ext, wb)
 
     if not color:
+        log.debug("No faces found on the image")
         error = {"files": {"image": ["No face on the image"]}}
         return ErrorSchema().dump({"error": error}), http.HTTPStatus.BAD_REQUEST
 
+    log.debug("Found skin color %s on the image", color)
     response = dict(color=color)
     return ColorSchema().dump(response)

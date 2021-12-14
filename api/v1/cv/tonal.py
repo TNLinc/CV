@@ -1,4 +1,5 @@
 import http
+import logging
 
 import numpy as np
 from cv2 import cv2
@@ -10,6 +11,8 @@ from schemas.color_schema import ColorSchema
 from schemas.error_schema import ErrorSchema
 from schemas.input_image_schema import InputImageSchema
 from services.cv_tone_processor import CVToneProcessor
+
+log = logging.getLogger("cv.request")
 
 
 @bp.route("/skin_tone", methods=["POST"])
@@ -23,13 +26,17 @@ from services.cv_tone_processor import CVToneProcessor
 @marshal_with(schema=ErrorSchema, code=422, description="Problem with image file")
 @marshal_with(schema=ErrorSchema, code=400, description="No face on the image")
 def opencv_skin_tone_v1(image: FileStorage):
+    log.debug("Start processing opencv_skin_tone_v1 request")
     np_img = np.fromstring(image.read(), np.uint8)
     image = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
+    log.debug("Image was read from request body")
     color = CVToneProcessor.opencv_tone_process(image)
 
     if not color:
+        log.debug("No faces found on the image")
         error = {"files": {"image": ["No face on the image"]}}
         return ErrorSchema().dump({"error": error}), http.HTTPStatus.BAD_REQUEST
 
+    log.debug("Found skin color %s on the image", color)
     response = dict(color=color)
     return ColorSchema().dump(response)

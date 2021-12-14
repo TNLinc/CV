@@ -60,7 +60,8 @@ disable = [
     "c-extension-no-member",
     "duplicate-code",
     "inconsistent-return-statements",
-    "import-error"
+    "import-error",
+    "line-too-long"
 ]
 
 [tool.isort]
