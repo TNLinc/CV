@@ -701,6 +701,14 @@ python-versions = ">=3.5"
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "python-json-logger"
+version = "2.0.2"
+description = "A python library adding a json log formatter"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "python-logstash-async"
 version = "2.3.0"
 description = "Asynchronous Python logging handler for Logstash."
@@ -894,7 +902,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.8"
-content-hash = "899067aa2a01ddb573a17a69ba000abb478b7bf575fbe4b2116a2cd338cb3749"
+content-hash = "2b46efc5342b4204ca2b06cfcd7c51432f3c12b229081c2cac13f7b45a762d7b"
 
 [metadata.files]
 absl-py = [
@@ -1476,6 +1484,10 @@ python-dateutil = [
 python-dotenv = [
     {file = "python-dotenv-0.19.1.tar.gz", hash = "sha256:14f8185cc8d494662683e6914addcb7e95374771e707601dfc70166946b4c4b8"},
     {file = "python_dotenv-0.19.1-py2.py3-none-any.whl", hash = "sha256:bbd3da593fc49c249397cbfbcc449cf36cb02e75afc8157fcc6a81df6fb7750a"},
+]
+python-json-logger = [
+    {file = "python-json-logger-2.0.2.tar.gz", hash = "sha256:202a4f29901a4b8002a6d1b958407eeb2dd1d83c18b18b816f5b64476dde9096"},
+    {file = "python_json_logger-2.0.2-py3-none-any.whl", hash = "sha256:99310d148f054e858cd5f4258794ed6777e7ad2c3fd7e1c1b527f1cba4d08420"},
 ]
 python-logstash-async = [
     {file = "python-logstash-async-2.3.0.tar.gz", hash = "sha256:ad68a05aac6c7d2d065b3dd8ba2e2b9bda59d103c75db2aa11b815e03a67c151"},
