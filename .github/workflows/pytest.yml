@@ -14,6 +14,8 @@ jobs:
       CV_SECRET_KEY: some-secret-string
       CV_DEBUG: TRUE
       CV_ALLOWED_HOSTS: '*'
+      LOGSTASH_HOST: "localhost"
+      LOGSTASH_PORT: "5044"
     steps:
       #----------------------------------------------
       #       check-out repo and set-up python

@@ -21,6 +21,8 @@ six = "^1.16.0"
 Flask-Cors = "^3.0.10"
 typing-extensions = "^3.10.0"
 opencv-contrib-python-headless = "^4.5.4"
+python-logstash-async = "^2.3.0"
+python-json-logger = "^2.0.2"
 
 [tool.poetry.dev-dependencies]
 pylint = "2.9.3"
@@ -60,14 +62,15 @@ disable = [
     "c-extension-no-member",
     "duplicate-code",
     "inconsistent-return-statements",
-    "import-error"
+    "import-error",
+    "line-too-long"
 ]
 
 [tool.isort]
 profile = "black"
 
 [tool.flake8]
-ignore = ["E203", "W503"]
+ignore = ["E203", "W503", "E501"]
 max-line-length = 120
 format = "html"
 htmldir = "flake-report"
