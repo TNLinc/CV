@@ -21,6 +21,7 @@ six = "^1.16.0"
 Flask-Cors = "^3.0.10"
 typing-extensions = "^3.10.0"
 opencv-contrib-python-headless = "^4.5.4"
+python-logstash-async = "^2.3.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "2.9.3"
