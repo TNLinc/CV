@@ -105,8 +105,8 @@ LOGGING = {
         },
     },
     "loggers": {
-        "cv.request": {"level": "DEBUG", "handlers": ["console"]},
-        "werkzeug": {"level": "DEBUG", "handlers": ["console"]},
+        # "cv.request": {"level": "DEBUG", "handlers": ["console"]},
+        # "werkzeug": {"level": "DEBUG", "handlers": ["console"]},
     },
-    "root": {"level": "DEBUG", "handlers": ["file", "logstash"]},
+    "root": {"level": "DEBUG", "handlers": ["console", "file", "logstash"]},
 }
