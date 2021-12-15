@@ -34,18 +34,22 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "default": {  # The formatter name, it can be anything that I wish
-            "format": "%(asctime)s - %(name)s - %(levelname)s - %(filename)s: %(funcName)s - %(message)s",
+            "format":
+            "%(asctime)s - %(name)s - %(levelname)s - %(filename)s: %(funcName)s - %(message)s",
             "datefmt": "%Y-%m-%d %H:%M:%S",  # How to display dates
         },
-        "default_colored": {  # The formatter name, it can be anything that I wish
-            "format": f"{_cyan}%(asctime)s{_reset} {_white}-{_reset} {_magenta}%(name)s{_reset} {_white}-{_reset} {_bold_red}%(levelname)s{_reset} {_white}-{_reset} {_blue}%(filename)s: %(funcName)s{_reset} {_white}-{_reset} {_cyan}%(message)s{_reset}",
+        "default_colored":
+        {  # The formatter name, it can be anything that I wish
+            "format":
+            f"{_cyan}%(asctime)s{_reset} {_white}-{_reset} {_magenta}%(name)s{_reset} {_white}-{_reset} {_bold_red}%(levelname)s{_reset} {_white}-{_reset} {_blue}%(filename)s: %(funcName)s{_reset} {_white}-{_reset} {_cyan}%(message)s{_reset}",
             "datefmt": "%Y-%m-%d %H:%M:%S",  # How to display dates
         },
         "simple": {  # The formatter name
             "format": "%(message)s",  # As simple as possible!
         },
         "json": {  # The formatter name
-            "()": "pythonjsonlogger.jsonlogger.JsonFormatter",  # The class to instantiate!
+            "()":
+            "pythonjsonlogger.jsonlogger.JsonFormatter",  # The class to instantiate!
             # Json is more complex, but easier to read, display all attributes!
             "format": """
                     tags: %(tags)l
@@ -86,7 +90,8 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.handlers.RotatingFileHandler",
             "formatter": "default",
-            "filename": f"{tempfile.mkdtemp(prefix='vendor.', suffix='.logs')}/vendor.log",
+            "filename":
+            f"{tempfile.mkdtemp(prefix='vendor.', suffix='.logs')}/vendor.log",
             "mode": "a",
             "maxBytes": 10485760,
             "backupCount": 5,
@@ -105,9 +110,14 @@ LOGGING = {
         },
     },
     "loggers": {
-        "gunicorn": {"propagate": 1}
+        "gunicorn": {
+            "propagate": 1
+        }
         # "cv.request": {"level": "DEBUG", "handlers": ["console"]},
         # "werkzeug": {"level": "DEBUG", "handlers": ["console"]},
     },
-    "root": {"level": "DEBUG", "handlers": ["console", "file", "logstash"]},
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console", "file", "logstash"]
+    },
 }
