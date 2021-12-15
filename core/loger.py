@@ -105,6 +105,7 @@ LOGGING = {
         },
     },
     "loggers": {
+        "gunicorn": {"propagate": 1}
         # "cv.request": {"level": "DEBUG", "handlers": ["console"]},
         # "werkzeug": {"level": "DEBUG", "handlers": ["console"]},
     },
