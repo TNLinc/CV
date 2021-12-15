@@ -1,4 +1,5 @@
 import json
+import logging
 from logging.config import dictConfig
 
 from apispec import APISpec
@@ -98,3 +99,7 @@ def check_for_maintenance():
 
 if __name__ == "__main__":
     app.run(debug=DEBUG, port=8000)
+else:
+    gunicorn_logger = logging.getLogger("gunicorn.error")
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
